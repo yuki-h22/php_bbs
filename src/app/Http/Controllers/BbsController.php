@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Model\Bbs; //bbsテーブルに接続
 
 class BbsController extends Controller
 {
     public function index(){
-        return view('bbs.index');
+      $bbs = Bbs::all();
+        return view('bbs.index',["bbs" => $bbs]);
     }
 
     public function create(Request $request){
@@ -16,10 +18,11 @@ class BbsController extends Controller
         // 投稿内容の受け取って変数に入れる
         $name = $request->input('name');
         $comment = $request->input('comment');
-         // 変数をビューに渡す
-        return view('bbs.index')->with([
-            "name" => $name,
-            "comment" => $comment,
-        ]);
+        
+        Bbs::insert(["name" => $name, "comment" => $comment]); //データベーステーブルbbsに投稿内容を入れる
+
+        $bbs = Bbs::all(); // 全データの取り出し
+        return view('bbs.index',["bbs" => $bbs]); //bbs.indexにデータを渡す
+        
     }
 }
