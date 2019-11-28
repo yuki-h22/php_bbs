@@ -7,6 +7,12 @@
 
 <h1>掲示板</h1>
 
+@isset($name, $comment)
+<h2>{{ $name }}さんの直前の投稿</h2>
+{{ $comment }}
+<br><hr>
+@endisset
+
 <!-- フォームエリア -->
 <h2>フォーム</h2>
 <form action="/bbs" method="POST">
