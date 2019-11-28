@@ -6,6 +6,15 @@
 <body>
 
 <h1>掲示板</h1>
+@if ($errors->any())
+    <h2>Error Message</h2>
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+@endif
+
 
 @isset($name, $comment)
 <h2>{{ $name }}さんの直前の投稿</h2>
