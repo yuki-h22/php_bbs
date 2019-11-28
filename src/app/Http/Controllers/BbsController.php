@@ -16,7 +16,7 @@ class BbsController extends Controller
         // 投稿内容の受け取って変数に入れる
         $name = $request->input('name');
         $comment = $request->input('comment');
-
+         // 変数をビューに渡す
         return view('bbs.index')->with([
             "name" => $name,
             "comment" => $comment,
